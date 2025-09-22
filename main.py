@@ -4,9 +4,9 @@ from pathlib import Path
 from openpyxl import load_workbook, Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 
-SUBJECT_ROW: int = 2
-SCORE_ROW: int = 4
-PARALLELL_COLUMN: int = 4
+SUBJECT_ROW: int = 2  # предмет
+SCORE_ROW: int = 4  # отметка
+PARALLELL_COLUMN: int = 4  # параллель
 SHEET_DEFAULT_NAME: str = "school_marks_count"
 
 
