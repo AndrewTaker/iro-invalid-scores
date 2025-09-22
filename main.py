@@ -58,7 +58,7 @@ def map_values(
         district = row[0]
         organisation = row[1]
         for score, subject in zip(scores, subjects):
-            row_count = row[score]
+            row_count = row[score - 1]
             row_subject = subject
             row_score = bad_scores_row[score - 1].value
             # zero based since not a row object
@@ -68,7 +68,7 @@ def map_values(
                     [
                         district,
                         organisation,
-                        row_parallell,
+                        row_parallell.strip(),
                         row_subject,
                         row_score,
                         row_count,
@@ -131,7 +131,12 @@ def main():
     columns = bad_score_columns(ws)
     subjects = bad_subjects(ws, columns)
     data = map_values(ws, subjects, columns)
-    save_as_xlsx(data)
+    if "--dry" in sys.argv:
+        row = data[0]
+        for i, cell in enumerate(row):
+            print(i, cell)
+    else:
+        save_as_xlsx(data)
 
 
 if __name__ == "__main__":
